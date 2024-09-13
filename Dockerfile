@@ -39,17 +39,11 @@ COPY ./000-default.conf  /etc/apache2/sites-available
 
 WORKDIR /var/www/html/myApp
 
-# RUN php artisan migrate
-
-
 # RUN service mysql start && \
 #     php artisan key:generate && \
 #     php artisan migrate --force
 
 EXPOSE 80 3306
-
-# CMD ["sh", "-c", "service mysql start && php artisan migrate --force && apachectl -D FOREGROUND"]
-
 
 # CMD ["sh", "-c", "service mysql start && apachectl -D FOREGROUND"]
 CMD ["apachectl", "-D", "FOREGROUND"]
