@@ -52,6 +52,14 @@ CMD ["apachectl", "-D", "FOREGROUND"]
 
 
 
+
+
+
+
+
+
+
+
 # FROM ubuntu:latest
 
 # RUN apt-get update -y
