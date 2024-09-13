@@ -39,7 +39,7 @@ COPY ./000-default.conf  /etc/apache2/sites-available
 
 WORKDIR /var/www/html/myApp
 
-RUN php artisan migrate
+# RUN php artisan migrate
 
 
 # RUN service mysql start && \
