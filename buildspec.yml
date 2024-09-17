@@ -14,3 +14,22 @@ phases:
     commands:
       - echo Pushing the Docker image to ECR...
       - docker push $REPO_URI:latest
+
+
+
+# aws ecs execute-command  \
+#           --region us-east-1\
+#           --cluster laravel \
+#           --task arn:aws:ecs:us-east-1:211125420613:task/laravel/90d54ab07886429aadc5f2aff028d2b7 \
+#           --container laravel\
+#           --command "/bin/bash" \
+#           --interactive
+
+
+
+
+# arn:aws:ecs:us-east-1:211125420613:task/laravel/7f7468e966ea4c2aa5a25ed651bd9f68
+
+
+
+# arn:aws:ecs:us-east-1:645095421007:task/laravel/3a48a78a6b3f4cc5b5559fb3fafb5724
