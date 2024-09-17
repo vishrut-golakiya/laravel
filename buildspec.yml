@@ -17,13 +17,6 @@
 #       - echo Pushing the Docker image to ECR...
 #       - docker push $REPO_URI:latest
 
-
-
-
-
-
-
-
 version: 0.2
 
 phases:
