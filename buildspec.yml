@@ -29,13 +29,13 @@ phases:
     commands:
       - echo Logging in to Amazon ECR...
       - aws ecr get-login-password --region us-east-1 | docker login --username AWS --password-stdin 211125420613.dkr.ecr.us-east-1.amazonaws.com
-      - IMAGE="211125420613.dkr.ecr.us-east-1.amazonaws.com/laravel-rds:latest"
+      - IMAGE="211125420613.dkr.ecr.us-east-1.amazonaws.com/laravel-rds"
 
   build:
     commands:
       - echo Building the Docker image...
-      - docker build -t laravel-project .
-      - docker tag laravel-project:latest $IMAGE:latest
+      - docker build -t laravel-rds .
+      - docker tag laravel-rds:latest $IMAGE:latest
 
   post_build:
     commands:
