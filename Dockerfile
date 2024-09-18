@@ -1,4 +1,4 @@
-FROM ubuntu:latest
+FROM ubuntu:22.04
 
 RUN apt-get update -y
 
@@ -11,9 +11,10 @@ RUN apt-get install apache2 -y
 RUN apt-get -y install software-properties-common && \
     add-apt-repository ppa:ondrej/php && \
     apt-get update && \
-    apt-get -y install php8.2
+    apt-get -y install php8.3
 
-RUN apt-get install -y apache2 php8.3 php8.3-cli php8.3-fpm php8.3-xml php8.3-mbstring php8.3-mysql
+RUN apt-get install -y php8.3-bcmath php8.3-fpm php8.3-xml php8.3-mysql php8.3-zip php8.3-intl php8.3-ldap php8.3-gd php8.3-cli php8.3-bz2 php8.3-curl php8.3-mbstring php8.3-pgsql php8.3-opcache php8.3-soap php8.3-cgi
+
 
 RUN apt-get update && apt-get -y install php-cli unzip && \
     cd ~ && apt-get -y install curl && \
@@ -21,8 +22,6 @@ RUN apt-get update && apt-get -y install php-cli unzip && \
     HASH=`curl -sS https://composer.github.io/installer.sig` && \
     php -r "if (hash_file('SHA384', '/tmp/composer-setup.php') === '$HASH') { echo 'Installer verified'; } else { echo 'Installer corrupt'; unlink('composer-setup.php'); } echo PHP_EOL;" && \
     php /tmp/composer-setup.php --install-dir=/usr/local/bin --filename=composer
-
-
 
 COPY ./myApp /var/www/html/myApp
 
