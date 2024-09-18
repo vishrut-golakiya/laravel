@@ -37,9 +37,8 @@ COPY ./000-default.conf  /etc/apache2/sites-available
 WORKDIR /var/www/html/myApp
 
 # RUN service mysql start && \
-#     php artisan key:generate && \
+# php artisan key:generate && \
 # RUN composer install
-
 # RUN php artisan migrate --force
 
 EXPOSE 80 3306
