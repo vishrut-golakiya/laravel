@@ -1,0 +1,6 @@
+[
+  {
+    "name": "laravel",
+    "imageUri": "211125420613.dkr.ecr.us-east-1.amazonaws.com/laravel-rds:latest"
+  }
+]
