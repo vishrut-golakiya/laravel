@@ -4,7 +4,7 @@
 aws ecs update-service \
   --region us-east-1 \
   --cluster laravel \
-  --service laravel-service \
+  --service laravel-rds-service \
   --enable-execute-command
 
 
@@ -13,7 +13,7 @@ aws ecs update-service \
 aws ecs stop-task \
   --region us-east-1 \
   --cluster laravel \
-  --task arn:aws:ecs:us-east-1:211125420613:task/laravel/d28eb015662848acabd7c50e30cd9424
+  --task arn:aws:ecs:us-east-1:211125420613:task/laravel/da0a2557f8db4d1cbccac4e65e60ac07
 
 
 aws ecs list-tasks \
@@ -24,7 +24,7 @@ aws ecs list-tasks \
   aws ecs execute-command  \
   --region us-east-1 \
   --cluster laravel \
-  --task arn:aws:ecs:us-east-1:211125420613:task/laravel/49effb00cb244132a85c1b07cccb202d \
+  --task arn:aws:ecs:us-east-1:211125420613:task/laravel/4c63b7f8d5d047e4a7bfce37273959a1 \
   --container laravel \
   --command "/bin/bash" \
   --interactive
