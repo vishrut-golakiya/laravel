@@ -43,8 +43,8 @@ phases:
       - docker push $IMAGE:latest
 
 artifacts:
-  files: '**/*'
-  discard-paths: yes
+  files:
+    - imagedefinitions.json
 
 env:
   variables:
