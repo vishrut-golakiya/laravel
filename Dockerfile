@@ -38,9 +38,9 @@ WORKDIR /var/www/html/myApp
 
 # RUN service mysql start && \
 #     php artisan key:generate && \
-RUN composer install
+# RUN composer install
 
-RUN php artisan migrate --force
+# RUN php artisan migrate --force
 
 EXPOSE 80 3306
 
