@@ -44,12 +44,12 @@ phases:
 
 artifacts:
   files: '**/*'
-  base-directory: build
   discard-paths: yes
 
 env:
   variables:
     AWS_DEFAULT_REGION: us-east-1
+
 
 
 
