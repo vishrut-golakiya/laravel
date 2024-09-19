@@ -46,3 +46,25 @@ EXPOSE 80 3306
 CMD ["apachectl", "-D", "FOREGROUND"]
 
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
