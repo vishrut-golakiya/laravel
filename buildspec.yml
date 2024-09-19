@@ -1,28 +1,84 @@
 version: 0.2
 phases:
+  install:
+    commands:
+      - echo Installing dependencies...
+      - pip3 install awscli
   pre_build:
     commands:
       - echo Logging in to Amazon ECR...
-      - aws --version
       - aws ecr get-login-password --region us-east-1 | docker login --username AWS --password-stdin 211125420613.dkr.ecr.us-east-1.amazonaws.com
-      - REPOSITORY_URI=211125420613.dkr.ecr.us-east-1.amazonaws.com/laravel-rds
-      
+      - IMAGE="211125420613.dkr.ecr.us-east-1.amazonaws.com/laravel-rds"
   build:
     commands:
       - echo Building the Docker image...
-      - docker build -t $REPOSITORY_URI:latest .
-
+      - docker build -t laravel-rds .
+      - docker tag laravel-rds:latest $IMAGE:latest
   post_build:
     commands:
-      - echo Build completed on `date`
       - echo Pushing the Docker image to ECR...
-      - docker push $REPOSITORY_URI:latest
-      - echo Updating ECS service...
-
+      - docker push $IMAGE:latest
 artifacts:
   files:
     - imagedefinitions.json
 
+# version: 0.2
+
+# phases:
+#   pre_build:
+#     commands:
+#       - echo Logging in to Amazon ECR...
+#       - aws --version
+#       - $(aws ecr get-login-password --region us-east-1 | docker login --username AWS --password-stdin 211125420613.dkr.ecr.us-east-1.amazonaws.com)
+#       - echo Build started on `date`
+#       - REPOSITORY_URI=211125420613.dkr.ecr.us-east-1.amazonaws.com/laravel-rds
+#       - IMAGE_TAG=$(echo $CODEBUILD_RESOLVED_SOURCE_VERSION | cut -c 1-7)
+
+#   build:
+#     commands:
+#       - echo Building the Docker image...
+#       - docker build -t $REPOSITORY_URI:latest .
+  
+#   post_build:
+#     commands:
+#       - echo Build completed on `date`
+#       - echo Pushing the Docker image to ECR...
+#       - docker push $REPOSITORY_URI:latest
+#       - echo Updating ECS service...
+#       - aws ecs update-service --cluster laravel --service laravel-service --force-new-deployment
+
+# artifacts:
+#   files:
+#     - '**/*'
+
+
 env:
   variables:
     AWS_DEFAULT_REGION: us-east-1
+
+
+
+
+
+
+
+
+
+
+
+# aws ecs execute-command  \
+#           --region us-east-1\
+#           --cluster laravel \
+#           --task arn:aws:ecs:us-east-1:211125420613:task/laravel/90d54ab07886429aadc5f2aff028d2b7 \
+#           --container laravel\
+#           --command "/bin/bash" \
+#           --interactive
+
+
+
+
+# arn:aws:ecs:us-east-1:211125420613:task/laravel/7f7468e966ea4c2aa5a25ed651bd9f68
+
+
+
+# arn:aws:ecs:us-east-1:645095421007:task/laravel/3a48a78a6b3f4cc5b5559fb3fafb5724
