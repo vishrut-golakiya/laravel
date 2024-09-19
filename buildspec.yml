@@ -10,7 +10,7 @@ phases:
     commands:
       - echo Logging in to Amazon ECR...
       - aws ecr get-login-password --region $AWS_DEFAULT_REGION | docker login --username AWS --password-stdin 211125420613.dkr.ecr.$AWS_DEFAULT_REGION.amazonaws.com
-      - IMAGE="211125420613.dkr.ecr.$AWS_DEFAULT_REGION.amazonaws.com/laravel-rds:latest"
+      - IMAGE=211125420613.dkr.ecr.$AWS_DEFAULT_REGION.amazonaws.com/laravel-rds:latest
 
   build:
     commands:
