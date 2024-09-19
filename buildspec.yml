@@ -21,7 +21,7 @@ phases:
   post_build:
     commands:
       - echo Pushing the Docker image to ECR...
-      - docker push $IMAGE:latest
+      - docker push 211125420613.dkr.ecr.us-east-1.amazonaws.com/laravel-rds:latest
 
 artifacts:
   files:
