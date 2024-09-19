@@ -35,6 +35,7 @@ COPY ./000-default.conf  /etc/apache2/sites-available
 
 WORKDIR /var/www/html/myApp
 
+
 # php artisan key:generate && \
 RUN composer install
 # RUN php artisan migrate --force

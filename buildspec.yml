@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 version: 0.2
 phases:
   pre_build:
@@ -22,6 +23,56 @@ phases:
 artifacts:
   files:
     - '**/*'
+=======
+# version: 0.2
+
+# phases:
+#   pre_build:
+#     commands:
+#       - echo Logging in to Amazon ECR...
+#       - pip3 install awscli
+      
+#       - aws ecr get-login-password --region us-east-1 | docker login --username AWS --password-stdin 211125420613.dkr.ecr.us-east-1.amazonaws.com
+#       - REPO_URI=211125420613.dkr.ecr.us-east-1.amazonaws.com/laravel-rds:latest
+#   build:
+#     commands:
+#       - echo Building the Docker image...
+#       - docker build -t $REPO_URI:latest .
+#   post_build:
+#     commands:
+#       - echo Pushing the Docker image to ECR...
+#       - docker push $REPO_URI:latest
+
+version: 0.2
+
+phases:
+  install:
+    commands:
+      - echo Installing dependencies...
+      - pip3 install awscli
+
+  pre_build:
+    commands:
+      - echo Logging in to Amazon ECR...
+      - aws ecr get-login-password --region us-east-1 | docker login --username AWS --password-stdin 211125420613.dkr.ecr.us-east-1.amazonaws.com
+      - IMAGE="211125420613.dkr.ecr.us-east-1.amazonaws.com/laravel-rds"
+
+  build:
+    commands:
+      - echo Building the Docker image...
+      - docker build -t laravel-rds .
+      - docker tag laravel-rds:latest $IMAGE:latest
+
+  post_build:
+    commands:
+      - echo Pushing the Docker image to ECR...
+      - docker push $IMAGE:latest
+
+artifacts:
+  files:
+    - imagedefinitions.json
+
+>>>>>>> ac6233c05ac81167611d0b2cfe64d7a650d82806
 env:
   variables:
     AWS_DEFAULT_REGION: us-east-1
@@ -36,6 +87,20 @@ env:
 
 
 
+<<<<<<< HEAD
+=======
+
+
+
+
+
+
+
+
+
+
+
+>>>>>>> ac6233c05ac81167611d0b2cfe64d7a650d82806
 # aws ecs execute-command  \
 #           --region us-east-1\
 #           --cluster laravel \
