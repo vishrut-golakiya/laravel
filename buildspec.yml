@@ -1,29 +1,29 @@
-<<<<<<< HEAD
-version: 0.2
-phases:
-  pre_build:
-    commands:
-      - echo Logging in to Amazon ECR...
-      - aws --version
-      - $(aws ecr get-login-password --region us-east-1 | docker login --username AWS --password-stdin 211125420613.dkr.ecr.us-east-1.amazonaws.com)
-      - echo Build started on `date`
-      - REPOSITORY_URI=211125420613.dkr.ecr.us-east-1.amazonaws.com/laravel-rds
-      - IMAGE_TAG=$(echo $CODEBUILD_RESOLVED_SOURCE_VERSION | cut -c 1-7)
-  build:
-    commands:
-      - echo Building the Docker image...
-      - docker build -t $REPOSITORY_URI:latest .
-  post_build:
-    commands:
-      - echo Build completed on `date`
-      - echo Pushing the Docker image to ECR...
-      - docker push $REPOSITORY_URI:latest
-      - echo Updating ECS service...
-      - aws ecs update-service --cluster laravel --service laravel-service --force-new-deployment
-artifacts:
-  files:
-    - '**/*'
-=======
+
+# version: 0.2
+# phases:
+#   pre_build:
+#     commands:
+#       - echo Logging in to Amazon ECR...
+#       - aws --version
+#       - $(aws ecr get-login-password --region us-east-1 | docker login --username AWS --password-stdin 211125420613.dkr.ecr.us-east-1.amazonaws.com)
+#       - echo Build started on `date`
+#       - REPOSITORY_URI=211125420613.dkr.ecr.us-east-1.amazonaws.com/laravel-rds
+#       - IMAGE_TAG=$(echo $CODEBUILD_RESOLVED_SOURCE_VERSION | cut -c 1-7)
+#   build:
+#     commands:
+#       - echo Building the Docker image...
+#       - docker build -t $REPOSITORY_URI:latest .
+#   post_build:
+#     commands:
+#       - echo Build completed on `date`
+#       - echo Pushing the Docker image to ECR...
+#       - docker push $REPOSITORY_URI:latest
+#       - echo Updating ECS service...
+#       - aws ecs update-service --cluster laravel --service laravel-service --force-new-deployment
+# artifacts:
+#   files:
+#     - '**/*'
+
 # version: 0.2
 
 # phases:
@@ -72,35 +72,12 @@ artifacts:
   files:
     - imagedefinitions.json
 
->>>>>>> ac6233c05ac81167611d0b2cfe64d7a650d82806
+
 env:
   variables:
     AWS_DEFAULT_REGION: us-east-1
 
 
-
-
-
-
-
-
-
-
-
-<<<<<<< HEAD
-=======
-
-
-
-
-
-
-
-
-
-
-
->>>>>>> ac6233c05ac81167611d0b2cfe64d7a650d82806
 # aws ecs execute-command  \
 #           --region us-east-1\
 #           --cluster laravel \
