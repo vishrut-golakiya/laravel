@@ -23,8 +23,14 @@ RUN apt-get update && apt-get -y install php-cli unzip && \
     php /tmp/composer-setup.php --install-dir=/usr/local/bin --filename=composer
 
 RUN composer install
-    
+
+COPY ./000-default.conf  /etc/apache2/sites-available 
+
 COPY ./myApp /var/www/html/myApp
+
+WORKDIR /var/www/html/myApp
+
+# COPY .env.example .env
 
 RUN chown -R www-data:www-data /var/www/html/myApp
 
@@ -32,9 +38,9 @@ RUN chmod -R 775 /var/www/html/myApp/storage
 
 RUN chown -R www-data:www-data /var/www/html/myApp/storage
 
-COPY ./000-default.conf  /etc/apache2/sites-available 
 
-WORKDIR /var/www/html/myApp
+
+
 
 
 # php artisan key:generate && \
