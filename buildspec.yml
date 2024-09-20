@@ -23,9 +23,9 @@ phases:
       - echo Pushing the Docker image to ECR...
       - docker push 211125420613.dkr.ecr.us-east-1.amazonaws.com/laravel-rds:latest
 
-# artifacts:
-#   files:
-#     - imagedefinitions.json
+artifacts:
+  files:
+    - imagedefinitions.json
 
 
 
