@@ -22,11 +22,12 @@ RUN apt-get update && apt-get -y install php-cli unzip && \
     php -r "if (hash_file('SHA384', '/tmp/composer-setup.php') === '$HASH') { echo 'Installer verified'; } else { echo 'Installer corrupt'; unlink('composer-setup.php'); } echo PHP_EOL;" && \
     php /tmp/composer-setup.php --install-dir=/usr/local/bin --filename=composer
 
+
 COPY ./000-default.conf  /etc/apache2/sites-available 
 
 COPY ./myApp /var/www/html/myApp
 
-
+WORKDIR /var/www/html/myApp
 
 # COPY .env.example .env
 
@@ -37,8 +38,6 @@ RUN chmod -R 775 /var/www/html/myApp/storage
 RUN chown -R www-data:www-data /var/www/html/myApp/storage
 
 RUN composer install
-
-WORKDIR /var/www/html/myApp
 
 # RUN php artisan key:generate 
 
