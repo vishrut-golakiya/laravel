@@ -27,7 +27,9 @@ artifacts:
   files:
     - imagedefinitions.json
 
-
+env:
+  variables:
+    AWS_DEFAULT_REGION: us-east-1
 
 
 
@@ -110,9 +112,7 @@ artifacts:
 # #     - '**/*'
 
 
-# env:
-#   variables:
-#     AWS_DEFAULT_REGION: us-east-1
+
 
 
 
