@@ -56,7 +56,12 @@ CMD ["apachectl", "-D", "FOREGROUND"]
 
 
 
-
+# DB_CONNECTION=mysql
+# DB_HOST=${{ secrets.DB_HOST }}
+# DB_PORT=3306
+# DB_DATABASE=laravel
+# DB_USERNAME=${{ secrets.DB_USERNAME }}
+# DB_PASSWORD=${{ secrets.DB_PASSWORD }}
 
 
 
