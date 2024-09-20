@@ -17,6 +17,9 @@ phases:
       - echo Building the Docker image...
       - docker build -t laravel-rds .
       - docker tag laravel-rds:latest 211125420613.dkr.ecr.us-east-1.amazonaws.com/laravel-rds:latest
+      - aws ecs list-clusters
+      - aws ecs list-services --cluster laravel
+
 
   post_build:
     commands:
