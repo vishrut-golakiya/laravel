@@ -22,6 +22,8 @@ RUN apt-get update && apt-get -y install php-cli unzip && \
     php -r "if (hash_file('SHA384', '/tmp/composer-setup.php') === '$HASH') { echo 'Installer verified'; } else { echo 'Installer corrupt'; unlink('composer-setup.php'); } echo PHP_EOL;" && \
     php /tmp/composer-setup.php --install-dir=/usr/local/bin --filename=composer
 
+RUN composer install
+    
 COPY ./myApp /var/www/html/myApp
 
 RUN chown -R www-data:www-data /var/www/html/myApp
@@ -30,14 +32,13 @@ RUN chmod -R 775 /var/www/html/myApp/storage
 
 RUN chown -R www-data:www-data /var/www/html/myApp/storage
 
-
 COPY ./000-default.conf  /etc/apache2/sites-available 
 
 WORKDIR /var/www/html/myApp
 
 
 # php artisan key:generate && \
-RUN composer install
+
 # RUN php artisan migrate --force
 
 EXPOSE 80 3306
