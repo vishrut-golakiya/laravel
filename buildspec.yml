@@ -22,6 +22,12 @@ phases:
     commands:
       - echo Pushing the Docker image to ECR...
       - docker push 211125420613.dkr.ecr.us-east-1.amazonaws.com/laravel-rds:latest
+      - aws ecs update-service \
+        --region us-east-1 \
+        --cluster laravel \
+        --service demo-service \
+        --enable-execute-command
+
 
 artifacts:
   files:
