@@ -24,9 +24,9 @@ phases:
       - docker push 211125420613.dkr.ecr.us-east-1.amazonaws.com/laravel-rds:latest
       - aws ecs update-service --cluster laravel --service demo-service --force-new-deployment
 
-artifacts:
-  files:
-    - imagedefinitions.json
+# artifacts:
+#   files:
+#     - imagedefinitions.json
 
 env:
   variables:
