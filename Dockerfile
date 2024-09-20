@@ -26,7 +26,7 @@ COPY ./000-default.conf  /etc/apache2/sites-available
 
 COPY ./myApp /var/www/html/myApp
 
-WORKDIR /var/www/html/myApp
+
 
 # COPY .env.example .env
 
@@ -38,7 +38,9 @@ RUN chown -R www-data:www-data /var/www/html/myApp/storage
 
 RUN composer install
 
-RUN php artisan key:generate 
+WORKDIR /var/www/html/myApp
+
+# RUN php artisan key:generate 
 
 # RUN php artisan migrate --force
 
