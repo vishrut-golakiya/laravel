@@ -55,7 +55,6 @@ CMD ["apachectl", "-D", "FOREGROUND"]
 
 
 
-
 # DB_CONNECTION=mysql
 # DB_HOST=${{ secrets.DB_HOST }}
 # DB_PORT=3306
