@@ -5,6 +5,7 @@ phases:
     commands:
       - echo Installing dependencies...
       - pip3 install awscli
+      - cp ./myApp/.env.example ./myApp/.env
 
   pre_build:
     commands:
