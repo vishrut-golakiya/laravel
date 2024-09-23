@@ -27,10 +27,6 @@ COPY ./000-default.conf  /etc/apache2/sites-available
 
 COPY ./myApp /var/www/html/myApp
 
-
-
-# COPY .env.example .env
-
 RUN chown -R www-data:www-data /var/www/html/myApp
 
 RUN chmod -R 775 /var/www/html/myApp/storage
