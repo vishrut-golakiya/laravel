@@ -2,12 +2,10 @@ FROM ubuntu:22.04
 
 RUN apt-get update -y
 
-#Installing apache in non-interactive mode
 ARG DEBIAN_FRONTEND=noninteractive
 
 RUN apt-get install apache2 -y
 
-#Installing PHP v 8.2
 RUN apt-get -y install software-properties-common && \
     add-apt-repository ppa:ondrej/php && \
     apt-get update && \
