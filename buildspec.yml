@@ -11,19 +11,18 @@ phases:
     commands:
       - echo Logging in to Amazon ECR...
       - aws ecr get-login-password --region us-east-1 | docker login --username AWS --password-stdin 211125420613.dkr.ecr.us-east-1.amazonaws.com
-      - IMAGE=211125420613.dkr.ecr.us-east-1.amazonaws.com/laravel-rds:latest
 
   build:
     commands:
       - echo Building the Docker image...
-      - docker build -t laravel-rds .
-      - docker tag laravel-rds:latest 211125420613.dkr.ecr.us-east-1.amazonaws.com/laravel-rds:latest
+      - docker build -t laravel .
+      - docker tag laravel:latest 211125420613.dkr.ecr.us-east-1.amazonaws.com/laravel:latest
 
   post_build:
     commands:
       - echo Pushing the Docker image to ECR...
-      - docker push 211125420613.dkr.ecr.us-east-1.amazonaws.com/laravel-rds:latest
-      - aws ecs update-service --cluster laravel --service demo-service --force-new-deployment
+      - docker push 211125420613.dkr.ecr.us-east-1.amazonaws.com/laravel:latest
+      - aws ecs update-service --cluster laravel --service laravel-service --force-new-deployment
 
 env:
   variables:
