@@ -46,17 +46,12 @@ EXPOSE 80 3306
 # CMD ["sh", "-c", "service mysql start && apachectl -D FOREGROUND"]
 CMD ["apachectl", "-D", "FOREGROUND"]
 
-
-
 # DB_CONNECTION=mysql
 # DB_HOST=${{ secrets.DB_HOST }}
 # DB_PORT=3306
 # DB_DATABASE=laravel
 # DB_USERNAME=${{ secrets.DB_USERNAME }}
 # DB_PASSWORD=${{ secrets.DB_PASSWORD }}
-
-
-
 
 
 
