@@ -16,7 +16,7 @@ phases:
   build:
     commands:
       - echo Building the Docker image...
-      - docker build -t laravel-rds .
+      - docker build -t laravel-rds ..
       - docker tag laravel-rds:latest 211125420613.dkr.ecr.us-east-1.amazonaws.com/laravel-rds:latest
 
   post_build:
