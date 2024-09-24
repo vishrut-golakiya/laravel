@@ -48,4 +48,3 @@ CMD ["apachectl", "-D", "FOREGROUND"]
 # DB_DATABASE=laravel
 # DB_USERNAME=${{ secrets.DB_USERNAME }}
 # DB_PASSWORD=${{ secrets.DB_PASSWORD }}
-
