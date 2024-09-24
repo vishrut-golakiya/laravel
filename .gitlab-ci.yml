@@ -31,11 +31,12 @@ build:
     - echo "Building the Docker image..."
     - docker build -t laravel .
     - docker tag laravel:latest $DOCKER_IMAGE
+    - echo "Pushing the Docker image to ECR..."
+    - docker push $DOCKER_IMAGE
 
 deploy:
   stage: deploy
   script:
-    - echo "Pushing the Docker image to ECR..."
-    - docker push $DOCKER_IMAGE
+   
     - echo "Forcing new ECS deployment..."
     - aws ecs update-service --cluster laravel --service laravel-service --force-new-deployment
