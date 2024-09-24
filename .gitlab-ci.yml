@@ -17,8 +17,8 @@ before_script:
   - echo "Setting up AWS credentials..."
   - aws configure set region $AWS_DEFAULT_REGION
   # Replace with actual AWS access and secret keys setup for GitLab CI environment
-  # - aws configure set aws_access_key_id $AWS_ACCESS_KEY_ID
-  # - aws configure set aws_secret_access_key $AWS_SECRET_ACCESS_KEY
+  - aws configure set aws_access_key_id $AWS_ACCESS_KEY_ID
+  - aws configure set aws_secret_access_key $AWS_SECRET_ACCESS_KEY
 
 stages:
   - build
