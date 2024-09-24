@@ -12,8 +12,7 @@ variables:
 
 before_script:
   - echo "Installing AWS CLI..."
-  - apk add --no-cache python3 py3-pip
-  - pip3 install awscli
+  - apk add --no-cache aws-cli
   - echo "Setting up AWS credentials..."
   - aws configure set region $AWS_DEFAULT_REGION
   # Replace with actual AWS access and secret keys setup for GitLab CI environment
