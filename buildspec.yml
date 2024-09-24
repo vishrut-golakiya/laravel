@@ -24,7 +24,6 @@ phases:
       - docker push 211125420613.dkr.ecr.us-east-1.amazonaws.com/laravel:latest
       - aws ecs update-service --cluster laravel --service laravel-service --force-new-deployment
 
-
 env:
   variables:
     AWS_DEFAULT_REGION: us-east-1
