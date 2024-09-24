@@ -34,9 +34,9 @@ WORKDIR /var/www/html/myApp
 
 RUN composer install
 
-RUN php artisan key:generate 
+# RUN php artisan key:generate 
 
-RUN php artisan migrate --force
+# RUN php artisan migrate --force
 
 EXPOSE 80 3306
 
