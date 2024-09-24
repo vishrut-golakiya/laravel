@@ -24,15 +24,15 @@ COPY ./000-default.conf  /etc/apache2/sites-available
 
 COPY ./myApp /var/www/html/myApp
 
+WORKDIR /var/www/html/myApp
+
+RUN composer install
+
 RUN chown -R www-data:www-data /var/www/html/myApp
 
 RUN chmod -R 775 /var/www/html/myApp/storage
 
 RUN chown -R www-data:www-data /var/www/html/myApp/storage
-
-WORKDIR /var/www/html/myApp
-
-RUN composer install
 
 RUN php artisan key:generate 
 
