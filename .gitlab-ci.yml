@@ -1,0 +1,42 @@
+image: docker:latest
+
+services:
+  - docker:dind
+
+variables:
+  AWS_DEFAULT_REGION: "us-east-1"
+  AWS_ACCOUNT_ID: "211125420613"
+  ECR_REGISTRY: "${AWS_ACCOUNT_ID}.dkr.ecr.${AWS_DEFAULT_REGION}.amazonaws.com"
+  ECR_REPOSITORY: "laravel"
+  DOCKER_IMAGE: "${ECR_REGISTRY}/${ECR_REPOSITORY}:latest"
+
+before_script:
+  - echo "Installing AWS CLI..."
+  - apk add --no-cache python3 py3-pip
+  - pip3 install awscli
+  - echo "Setting up AWS credentials..."
+  - aws configure set region $AWS_DEFAULT_REGION
+  # Replace with actual AWS access and secret keys setup for GitLab CI environment
+  # - aws configure set aws_access_key_id $AWS_ACCESS_KEY_ID
+  # - aws configure set aws_secret_access_key $AWS_SECRET_ACCESS_KEY
+
+stages:
+  - build
+  - deploy
+
+build:
+  stage: build
+  script:
+    - echo "Logging in to Amazon ECR..."
+    - aws ecr get-login-password --region $AWS_DEFAULT_REGION | docker login --username AWS --password-stdin $ECR_REGISTRY
+    - echo "Building the Docker image..."
+    - docker build -t laravel .
+    - docker tag laravel:latest $DOCKER_IMAGE
+
+deploy:
+  stage: deploy
+  script:
+    - echo "Pushing the Docker image to ECR..."
+    - docker push $DOCKER_IMAGE
+    - echo "Forcing new ECS deployment..."
+    - aws ecs update-service --cluster laravel --service laravel-service --force-new-deployment
