@@ -5,7 +5,7 @@ services:
 
 variables:
   AWS_DEFAULT_REGION: "us-east-1"
-  AWS_ACCOUNT_ID: "211125420613"
+  AWS_ACCOUNT_ID: "219609271406"
   ECR_REGISTRY: "${AWS_ACCOUNT_ID}.dkr.ecr.${AWS_DEFAULT_REGION}.amazonaws.com"
   ECR_REPOSITORY: "laravel"
   DOCKER_IMAGE: "${ECR_REGISTRY}/${ECR_REPOSITORY}:latest"
