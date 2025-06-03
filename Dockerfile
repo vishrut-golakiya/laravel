@@ -9,9 +9,10 @@ RUN apt-get install apache2 -y
 RUN apt-get -y install software-properties-common && \
     add-apt-repository ppa:ondrej/php && \
     apt-get update && \
-    apt-get -y install php8.3
+    apt-get -y install php8.4
 
-RUN apt-get install -y php8.3-bcmath php8.3-fpm php8.3-xml php8.3-mysql php8.3-zip php8.3-intl php8.3-ldap php8.3-gd php8.3-cli php8.3-bz2 php8.3-curl php8.3-mbstring php8.3-pgsql php8.3-opcache php8.3-soap php8.3-cgi
+RUN apt-get install -y php8.4 php8.4-cli php8.4-fpm php8.4-common php8.4-bcmath php8.4-bz2 php8.4-curl php8.4-gd php8.4-intl php8.4-mbstring php8.4-mysql php8.4-opcache php8.4-pgsql php8.4-soap php8.4-xml php8.4-zip
+
 
 RUN apt-get update && apt-get -y install php-cli unzip && \
     cd ~ && apt-get -y install curl && \
@@ -26,7 +27,7 @@ COPY ./myApp /var/www/html/myApp
 
 WORKDIR /var/www/html/myApp
 
-RUN composer install
+RUN composer update --no-interaction --prefer-dist
 
 RUN chown -R www-data:www-data /var/www/html/myApp
 
